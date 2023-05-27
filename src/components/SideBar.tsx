@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react';
+import { useLocation } from "react-router-dom";
 
 interface SideBarProps {
   closeSideDrawer: () => void;
@@ -7,15 +8,32 @@ interface SideBarProps {
 
 
 const SideBar = ({isOpen,closeSideDrawer }:SideBarProps) => {
+
+    const [link, setLink] = useState<string>('');
+
+    const location = useLocation();
+    let path = location.pathname;
+
+    useEffect(() => {
+        for (let i = 0; i < path.length; i++) {
+            path = path.replace("/", " ");
+        }
+        path = path.trim();
+    
+        let stringArray = path.split(" ");
+        setLink(stringArray[0]);
+      }, [location]);
+
   return (
     <>
               {
             !isOpen &&
-            <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
-                <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+            <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-#fffbf6 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar" style={{width:'10rem'}}>
+                <div className="h-full px-3 pb-4 overflow-y-auto bg-#fffbf6 dark:bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <a href="contacts" 
+                            className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white ${link === "contacts" ? 'bg-white shadow' : ''}`}>
                             <svg aria-hidden="true" 
                                     className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" 
                                     fill="currentColor" 
@@ -36,7 +54,8 @@ const SideBar = ({isOpen,closeSideDrawer }:SideBarProps) => {
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <a href="charts" 
+                            className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white ${link === "charts" ? 'bg-white shadow' : ''}`}>
                             <svg aria-hidden="true" 
                             className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" 
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +66,8 @@ const SideBar = ({isOpen,closeSideDrawer }:SideBarProps) => {
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <a href="maps" 
+                            className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white ${link === "maps" ? 'bg-white shadow' : ''}`}>
                             <svg aria-hidden="true" 
                             className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" 
                             viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +102,7 @@ const SideBar = ({isOpen,closeSideDrawer }:SideBarProps) => {
                     <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
                     <ul className="space-y-2 font-medium">
                     <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white">
                             <svg aria-hidden="true" 
                                     className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" 
                                     fill="currentColor" 
@@ -103,7 +123,7 @@ const SideBar = ({isOpen,closeSideDrawer }:SideBarProps) => {
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white">
                             <svg aria-hidden="true" 
                             className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" 
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +134,7 @@ const SideBar = ({isOpen,closeSideDrawer }:SideBarProps) => {
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white">
                             <svg aria-hidden="true" 
                             className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" 
                             viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
