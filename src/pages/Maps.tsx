@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import { useQuery } from 'react-query'
-import { CountryData, getCountrySpecificCasesAPI } from '../globalfiles/GlobalAPI';
+import { getCountrySpecificCasesAPI } from '../globalfiles/GlobalAPI';
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
+import { CountryData } from '../globalfiles/GlobalInterface';
 
 
 const Maps = () => {
