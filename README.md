@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# About the Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was Taiyo.AI Assignment for the role of  Front End Engineer to demonstrate the work using different tools like
+React, Typescript, React-Query, React-Redux, Tailwind css,react-chartjs-2,react-leaflet,axios etc
 
 ## Available Scripts
 
