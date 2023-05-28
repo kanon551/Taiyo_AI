@@ -39,65 +39,89 @@ export interface CountryData {
     recovered: Record<string, number>;
   }
 
+  export interface ContactProps {
+    id: number;
+    firstName: string;
+    lastName : string;
+    status: string;
+  }
+
+  export interface CardProps {
+    object : ContactProps;
+    deleteUser: () => void;
+    toggleModal: (choice: boolean) => void;
+}
+
+export interface ModalProps {
+    toggleModal: (choice: boolean) => void;
+    modalData: ContactProps;
+    modalStatus: string;
+}
+
+export interface RootState {
+    users: ContactProps[];
+  }
+  
+
 
   export const userContactInitialData = [
     {
-        firstname: 'Ethan',
+        firstName: 'Ethan',
         lastName: 'Smith',
         status: 'Inactive',
+        id: 0,
     },
     {
-        firstname: 'Ava',
+        firstName: 'Ava',
         lastName: 'Johnson',
         status: 'Inactive',
+        id: 1,
     },
     {
-        firstname: 'Noah',
+        firstName: 'Noah',
         lastName: 'Williams',
         status: 'Active',
+        id: 2,
     },
     {
-        firstname: 'Ethan',
-        lastName: 'Smith',
-        status: 'Inactive',
-    },
-    {
-        firstname: 'Sophia',
+        firstName: 'Sophia',
         lastName: 'Jones',
         status: 'Active',
+        id: 3,
     },
     {
-        firstname: 'Ethan',
-        lastName: 'Smith',
-        status: 'Active',
-    },
-    {
-        firstname: 'Liam',
+        firstName: 'Liam',
         lastName: 'Brown',
         status: 'Active',
+        id: 4,
     }
     ,{
-        firstname: 'Isabella',
+        firstName: 'Isabella',
         lastName: 'Davis',
         status: 'Inactive',
+        id: 5,
     }
     ,{
-        firstname: 'Jackson',
+        firstName: 'Jackson',
         lastName: 'Miller',
         status: 'Inactive',
+        id: 6,
     }
     ,{
-        firstname: 'Mia',
+        firstName: 'Mia',
         lastName: 'Wilson',
         status: 'Active',
+        id: 7,
     },{
-        firstname: 'Aiden',
+        firstName: 'Aiden',
         lastName: 'Moore',
         status: 'Inactive',
+        id: 8,
     },
     {
-        firstname: 'Charlotte',
+        firstName: 'Charlotte',
         lastName: 'Taylor',
         status: 'Active',
+        id: 9,
     }
   ]

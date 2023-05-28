@@ -1,115 +1,66 @@
-import React from 'react'
-
-interface CardProps {
-    firstName: string;
-    lastName : string;
-    status: string
-}
-
-const Card = ({ firstName, lastName, status }: CardProps) => {
-    let backgroundColorClass = '';
-
-    if (status === 'Inactive') {
-        backgroundColorClass = 'bg-red-500';
-    } else if (status === 'Active') {
-        backgroundColorClass = 'bg-green-500';
-    } else {
-        backgroundColorClass = 'bg-blue-500';
-    }
-    
-    return(
-        <div className="relative flex items-center justify-center rounded bg-white h-28">
-            <div className="text-1xl font-cursive text-gray-400 dark:text-gray-500" style={{color:'orange'}}>
-                {firstName} {lastName} 
-                <h2 className={`text-sm ${backgroundColorClass} font-normal text-center absolute top-0 left-0 z-1 px-2 py-1 text-white`} style={{ borderTopRightRadius: '50%', borderBottomRightRadius:'50%' }}>
-                {status}
-                </h2>
-            </div>
-        </div>
-      );
-}
-
-
-
-
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Card from '../components/Card';
+import ModalForm from '../components/ModalForm';
+import { ContactProps, RootState } from '../globalfiles/GlobalInterface';
+import { deleteUser } from '../globalfiles/ContactReducer';
+ 
 const Contacts = () => {
 
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [modalData, setModalData]= useState<ContactProps>({
+        firstName: '',
+        lastName: '',
+        status: '',
+        id:0,
+    })
+
+    const dispatch = useDispatch();
     
+    const [modalStatus, setModalStatus] = useState<string>('');
 
+    const userContact = useSelector((state: RootState)=> state.users);
 
-    const generateRandomData = () => {
-        const firstNames = ['John', 'Jane', 'Mike', 'Emily'];
-        const lastNames = ['Doe', 'Smith', 'Johnson', 'Brown'];
-        const statuses = ['Active', 'Inactive'];
-        
-        const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-        const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-        
-        return {
-          firstName: randomFirstName,
-          lastName: randomLastName,
-          status: randomStatus
-        };
-      };
+    const onUpdateCardClickResponse = (choice: boolean, index: number, object: ContactProps)=> {
+        setShowModal(choice)
+        setModalData(object)
+        setModalStatus("EDIT")
+    }
 
+    const onAddCardClickResponse = (choice: boolean)=> {
+        setShowModal(choice)
+        setModalData({
+            firstName: '',
+            lastName: '',
+            status: '',
+            id:0,
+        })
+        setModalStatus("CREATE")
+    }
 
-      const cards = Array.from({ length: 8 }, (_, index) => generateRandomData());
-
-
+    const deleteOnClick = (id: number)=> {
+        dispatch(deleteUser({id:id}))
+    }
 
   return (
     <>
-            <div className="grid grid-cols-3 gap-4 mb-4">
-                <div className="flex items-center justify-center h-24 rounded bg-white">
-                    <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div className="flex items-center justify-center h-24 rounded bg-white">
-                    <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div className="flex items-center justify-center h-24 rounded bg-white">
-                    <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-            </div>
-            <div className="flex items-center justify-center h-48 mb-4 rounded bg-white">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-            </div>
-            <div className="grid grid-cols-2 gap-4 mb-4">
-                <div className="flex items-center justify-center rounded bg-white h-28">
-                    <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div className="flex items-center justify-center rounded bg-white h-28">
-                    <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div className="flex items-center justify-center rounded bg-white h-28">
-                    <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div className="flex items-center justify-center rounded bg-white h-28">
-                    <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-            </div>
-            <div className="flex items-center justify-center h-48 mb-4 rounded bg-white">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-            </div>
-            <div className="grid grid-cols-2 gap-4 mb-4">
-                <div className="flex items-center justify-center rounded bg-white h-28">
-                    <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div className="flex items-center justify-center rounded bg-white h-28">
-                    <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div className="flex items-center justify-center rounded bg-white h-28">
-                    <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div className="flex items-center justify-center rounded bg-white h-28">
-                    <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
+            <div className='mb-4 w-fit cursor-pointer' onClick={() => onAddCardClickResponse(true)}>
+                <svg width="2rem" height="2rem" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" fill="none" width="24" height="24"/>
+                <g>
+                <path d="M21 14v5c0 1.105-.895 2-2 2H5c-1.105 0-2-.895-2-2V5c0-1.105.895-2 2-2h5v2H5v14h14v-5h2z"/>
+                <path d="M21 7h-4V3h-2v4h-4v2h4v4h2V9h4"/>
+                </g>
+                </svg>
             </div>
             <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
-                {cards.map((card, index) => (
-                    <Card key={index} {...card} />
+                {userContact.map((contact, index) => (
+                        <Card key={index} object={contact} toggleModal={(choice: boolean)=>onUpdateCardClickResponse(choice,index,contact )} deleteUser={()=> deleteOnClick(contact.id)} />
                 ))}
             </div>
+            {
+                showModal && <ModalForm toggleModal={(choice: boolean)=>setShowModal(choice)} modalData={modalData} modalStatus={modalStatus}/>
+            }
     </>
             
   )

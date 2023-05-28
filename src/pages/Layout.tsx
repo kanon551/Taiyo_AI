@@ -35,7 +35,7 @@ const Layout = (props: Props) => {
         <SideBar isOpen={isOpen} closeSideDrawer={toggleCloseDrawer}/>
         
         <div className="p-4 sm:ml-40">
-            <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+            <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14" style={{height:'100vh'}}>
                 {children}
             </div>
         </div>
