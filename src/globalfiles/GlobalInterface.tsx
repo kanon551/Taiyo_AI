@@ -4,12 +4,12 @@ export interface CountryData {
     updated: number;
     country: string;
     countryInfo: {
-      _id: number;
-      iso2: string;
-      iso3: string;
-      lat: number;
-      long: number;
-      flag: string;
+        _id: number;
+        iso2: string;
+        iso3: string;
+        lat: number;
+        long: number;
+        flag: string;
     };
     cases: number;
     todayCases: number;
@@ -31,23 +31,23 @@ export interface CountryData {
     activePerOneMillion: number;
     recoveredPerOneMillion: number;
     criticalPerOneMillion: number;
-  }
+}
 
-  export interface CovidOverAllData {
+export interface CovidOverAllData {
     cases: Record<string, number>;
     deaths: Record<string, number>;
     recovered: Record<string, number>;
-  }
+}
 
-  export interface ContactProps {
+export interface ContactProps {
     id: number;
     firstName: string;
-    lastName : string;
+    lastName: string;
     status: string;
-  }
+}
 
-  export interface CardProps {
-    object : ContactProps;
+export interface CardProps {
+    object: ContactProps;
     deleteUser: () => void;
     toggleModal: (choice: boolean) => void;
 }
@@ -60,11 +60,11 @@ export interface ModalProps {
 
 export interface RootState {
     users: ContactProps[];
-  }
-  
+}
 
 
-  export const userContactInitialData = [
+
+export const userContactInitialData = [
     {
         firstName: 'Ethan',
         lastName: 'Smith',
@@ -95,24 +95,24 @@ export interface RootState {
         status: 'Active',
         id: 4,
     }
-    ,{
+    , {
         firstName: 'Isabella',
         lastName: 'Davis',
         status: 'Inactive',
         id: 5,
     }
-    ,{
+    , {
         firstName: 'Jackson',
         lastName: 'Miller',
         status: 'Inactive',
         id: 6,
     }
-    ,{
+    , {
         firstName: 'Mia',
         lastName: 'Wilson',
         status: 'Active',
         id: 7,
-    },{
+    }, {
         firstName: 'Aiden',
         lastName: 'Moore',
         status: 'Inactive',
@@ -124,4 +124,4 @@ export interface RootState {
         status: 'Active',
         id: 9,
     }
-  ]
+]

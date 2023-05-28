@@ -1,5 +1,5 @@
 import { Line } from 'react-chartjs-2'
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,7 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import {  getCovidFluctiatedDataAPI } from '../globalfiles/GlobalAPI';
+import { getCovidFluctiatedDataAPI } from '../globalfiles/GlobalAPI';
 import { CovidOverAllData } from '../globalfiles/GlobalInterface';
 
 
@@ -28,8 +28,8 @@ const Charts = () => {
     Tooltip,
     Legend
   );
-  
-   const options = {
+
+  const options = {
     responsive: true,
     plugins: {
       legend: {
@@ -41,18 +41,18 @@ const Charts = () => {
       },
     },
   };
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     getCovidData();
-  },[])
+  }, [])
 
 
-  const getCovidData = async()=> {
+  const getCovidData = async () => {
     const fluctuatedData = await getCovidFluctiatedDataAPI();
     setCovidData(fluctuatedData);
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     if (covidData) {
       const labels = Object.keys(covidData.cases).map((date) => {
         // Convert date format from "1/22/20" to "January 22, 2020"
@@ -97,15 +97,15 @@ const Charts = () => {
 
       setDataTest(newData);
     }
-  },[covidData])
+  }, [covidData])
 
 
   return (
-    <div style={{height:'100vh'}}>
+    <div style={{ height: '100vh' }}>
       <div className="text-2xl leading-5" style={{ letterSpacing: '0.5em', padding: '1vh', fontFamily: 'monospace' }}>
         Charts
       </div>
-      { dataTest !== null && <Line options={options} data={dataTest}/> }
+      {dataTest !== null && <Line options={options} data={dataTest} />}
     </div>
   )
 }

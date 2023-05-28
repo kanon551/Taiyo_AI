@@ -3,43 +3,39 @@ import Header from '../components/Header';
 import SideBar from '../components/SideBar';
 
 interface Props {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window?: () => Window;
-    children: React.ReactElement;
-  }
+  window?: () => Window;
+  children: React.ReactElement;
+}
 
 
 const Layout = (props: Props) => {
 
-    const { children, window } = props;
+  const { children, window } = props;
 
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpenDrawer = () => {
     setIsOpen(true);
   };
 
-  const toggleCloseDrawer = ()=> {
+  const toggleCloseDrawer = () => {
     setIsOpen(false)
   }
 
 
   return (
-    <div style={{backgroundColor:"#fffbf6"}}>
+    <div style={{ backgroundColor: "#fffbf6" }}>
 
-        <Header openSideBar={toggleOpenDrawer}/>
+      <Header openSideBar={toggleOpenDrawer} />
 
-        <SideBar isOpen={isOpen} closeSideDrawer={toggleCloseDrawer}/>
-        
-        <div className="p-4 sm:ml-40">
-            <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14" style={{height:'100vh'}}>
-                {children}
-            </div>
+      <SideBar isOpen={isOpen} closeSideDrawer={toggleCloseDrawer} />
+
+      <div className="p-4 sm:ml-40">
+        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14" style={{ height: '100vh' }}>
+          {children}
         </div>
-        
+      </div>
+
     </div>
   )
 }
