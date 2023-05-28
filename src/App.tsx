@@ -10,20 +10,30 @@ import {
 import Layout from './pages/Layout';
 import Contacts from './pages/Contacts';
 import Charts from './pages/Charts';
+
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
 import Maps from './pages/Maps';
+
+
+  const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="App">
+    <QueryClientProvider client={queryClient}>
+      <div>
       <Router>
-          <Routes>
-            <Route path="/" element={<Navigate to="/contacts" />} />
-            <Route path="/contacts" element={<Layout><Contacts/></Layout>} />
-            <Route path="/charts" element={<Layout><Charts/></Layout>} />
-            <Route path="/maps" element={<Layout><Maps/></Layout>} />
-          </Routes>
-      </Router>
-    </div>
+            <Routes>
+              <Route path="/" element={<Navigate to="/contacts" />} />
+              <Route path="/contacts" element={<Layout><Contacts/></Layout>} />
+              <Route path="/charts" element={<Layout><Charts/></Layout>} />
+              <Route path="/maps" element={<Layout><Maps/></Layout>} />
+            </Routes>
+        </Router>
+      </div>
+    </QueryClientProvider>
   );
 }
 
