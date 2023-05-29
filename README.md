@@ -1,5 +1,9 @@
 # About the Project
 
+
+https://github.com/kanon551/taiyo_ai/assets/88090133/2f6a5cf5-ece6-47a9-b96c-3e8b9efc38c2
+
+
 This project was Taiyo.AI Assignment for the role of  Front End Engineer to demonstrate the work using different tools like
 React, Typescript, React-Query, React-Redux, Tailwind css,react-chartjs-2,react-leaflet,axios etc
 
