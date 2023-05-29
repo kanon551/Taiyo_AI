@@ -1,7 +1,7 @@
 # About the Project
 
 
-https://github.com/kanon551/taiyo_ai/assets/88090133/2f6a5cf5-ece6-47a9-b96c-3e8b9efc38c2
+https://github.com/kanon551/taiyo_ai/assets/88090133/c11aa39a-4780-4b82-9c26-e86f2c2720e7
 
 
 This project was Taiyo.AI Assignment for the role of  Front End Engineer to demonstrate the work using different tools like
